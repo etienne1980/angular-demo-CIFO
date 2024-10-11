@@ -1,0 +1,21 @@
+<app-header />
+
+<main>
+  <ul id="users">
+    @for (item of users; track item.id) {
+    <!-- passing the entire object to the child component (intput) -->
+    <app-user
+      [selectedActiveUser]="item.id === selectedUserId"
+      [user]="item"
+      (select)="onSelectUser($event)"
+    />
+    }
+  </ul>
+
+  @if(selectedUser){
+
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
+  }@else {
+  <h3>Please select a user to see his tasks</h3>
+  }
+</main>
